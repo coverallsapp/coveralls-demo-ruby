@@ -29,4 +29,8 @@ If you've gotten this far, we can assume:
 
 This project is configured to send test coverage results to [Coveralls](https://coveralls.io/) from [CircleCI](https://circleci.com/)<sup>*</sup> using the [Coveralls Orb](https://circleci.com/developer/orbs/orb/coveralls/coveralls).
 
-For a tutorial on setting up this project, see [Adding test coverage to your CI pipeline](https://circleci.com/blog/adding-test-coverage-to-your-ci-pipeline/) at CircleCI.com.
+For a tutorial on setting up this project, see [Adding test coverage to your CI pipeline](https://circleci.com/blog/adding-test-coverage-to-your-ci-pipeline/) at CircleCI.
+
+---
+
+- Minor change to trigger CI build
