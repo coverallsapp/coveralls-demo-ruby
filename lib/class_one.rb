@@ -11,6 +11,8 @@ class ClassOne
     else
       puts false
     end
+
+    # Another insignificant comment: this line will be commented out to change coverage.
     "uncovered"
   end
 
