@@ -12,6 +12,7 @@ describe ClassOne do
   end
 
   # Uncomment below to achieve 100% coverage
+  # Keeping this uncommented; just adding a comment to trigger an update
   # describe "uncovered" do
   #   it "returns 'uncovered'" do
   #     expect(ClassOne.uncovered).to eql("uncovered")
