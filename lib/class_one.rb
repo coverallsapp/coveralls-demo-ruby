@@ -13,6 +13,14 @@ class ClassOne
       puts false
     end
 
+    love = true
+
+    if love
+      puts "I love you"
+    else
+      puts "I hate you"
+    end
+
     # Another insignificant comment: this line will be commented out to change coverage.
     "uncovered"
   end
