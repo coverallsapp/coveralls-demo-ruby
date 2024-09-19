@@ -1,4 +1,4 @@
-name: Test Coveralls
+name: Test Coveralls GitHub Action
 on:
   push:
     branches: [master]

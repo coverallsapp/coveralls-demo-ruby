@@ -1,4 +1,4 @@
-name: Test Coverage-Reporter on Multiple Architectures
+name: Test Coverage-Reporter
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
 
 jobs:
   build_and_test:
-    name: Build and Test on Multiple Architectures
+    name: Build and Test
     runs-on: ubuntu-22.04
 
     strategy:
@@ -28,10 +28,7 @@ jobs:
       - name: Run Tests
         run: bundle exec rspec
 
-      - name: Run test coverage
-        run: make test-coverage
-
-      - name: Download Coverage-Reporter (x86_64)
+      - name: Test on x86_64
         if: matrix.arch == 'x86_64'
         run: |
           curl -sL https://github.com/coverallsapp/coverage-reporter/actions/runs/10950279748/artifacts/1955825111 | tar -xz
@@ -39,7 +36,7 @@ jobs:
         env:
           COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Download Coverage-Reporter (aarch64)
+      - name: Test on aarch64
         if: matrix.arch == 'aarch64'
         run: |
           curl -sL https://github.com/coverallsapp/coverage-reporter/actions/runs/10950279748/artifacts/1955825116 | tar -xz
