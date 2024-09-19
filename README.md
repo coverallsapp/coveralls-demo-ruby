@@ -1,4 +1,4 @@
-# coveralls-ruby-demo for GitHub Actions
+# `coveralls-ruby-demo` for GitHub Actions
 
 [Coveralls](https://coveralls.io/) demo project, using:
 
