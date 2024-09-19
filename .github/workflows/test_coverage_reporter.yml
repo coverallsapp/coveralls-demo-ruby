@@ -28,14 +28,6 @@ jobs:
       - name: Run Tests
         run: bundle exec rspec
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16.x
-
-      - name: Install Node.js dependencies
-        run: npm install
-
       - name: Run test coverage
         run: make test-coverage
 

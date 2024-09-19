@@ -10,8 +10,6 @@ jobs:
   build_and_test:
     name: Build and test
     runs-on: ubuntu-latest
-    env:
-      NODE_COVERALLS_DEBUG: 1
     steps:
 
     - name: Checkout code
