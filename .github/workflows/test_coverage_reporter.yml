@@ -37,14 +37,14 @@ jobs:
 
       # For pre-release testing only
       # Conditionally download and run based on architecture
-      - name: Download the correct binary
+      - name: Download the correct binary from coverage-reporter repo
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           if [ "${{ matrix.arch }}" = "x86_64" ]; then
-            gh run download 10950279748 --name coveralls-linux-x86_64 --dir ./;
+          gh run download 10950279748 --repo coverallsapp/coverage-reporter --name coveralls-linux-x86_64 --dir ./;
           elif [ "${{ matrix.arch }}" = "aarch64" ]; then
-            gh run download 10950279748 --name coveralls-linux-aarch64 --dir ./;
+          gh run download 10950279748 --repo coverallsapp/coverage-reporter --name coveralls-linux-aarch64 --dir ./;
           fi
 
       - name: Unzip and run the correct binary
