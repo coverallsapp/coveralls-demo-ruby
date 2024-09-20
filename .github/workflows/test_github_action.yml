@@ -1,4 +1,4 @@
-name: Test Coveralls
+name: Test Coveralls GitHub Action
 on:
   push:
     branches: [master]
@@ -10,8 +10,6 @@ jobs:
   build_and_test:
     name: Build and test
     runs-on: ubuntu-latest
-    env:
-      NODE_COVERALLS_DEBUG: 1
     steps:
 
     - name: Checkout code
@@ -20,7 +18,7 @@ jobs:
     - name: Install Ruby
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: 2.6.3
+        ruby-version: 2.7.7
         bundler-cache: true
 
     - name: Run tests

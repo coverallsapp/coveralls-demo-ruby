@@ -1,0 +1,89 @@
+name: Test Coverage-Reporter
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  build_and_test:
+    name: Test on Ubuntu 22.04
+    runs-on: ubuntu-22.04
+
+    strategy:
+      matrix:
+        arch: [x86_64, aarch64]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7.7
+          bundler-cache: true
+
+      - name: Install Ruby dependencies
+        run: bundle install
+
+      - name: Run Tests
+        run: bundle exec rspec
+
+      # For pre-release testing only
+      - name: Install GitHub CLI
+        run: sudo apt-get install gh -y
+
+      # For pre-release testing only
+      # Conditionally download and run based on architecture
+      - name: Download the correct binary from coverage-reporter repo
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if [ "${{ matrix.arch }}" = "x86_64" ]; then
+            gh run download 10950279748 --repo coverallsapp/coverage-reporter --name coveralls-linux-x86_64 --dir ./;
+          elif [ "${{ matrix.arch }}" = "aarch64" ]; then
+            gh run download 10950279748 --repo coverallsapp/coverage-reporter --name coveralls-linux-aarch64 --dir ./;
+          fi
+
+      # Debugging: List files after download
+      - name: List files
+        run: ls -l
+
+      - name: Print Host Architecture
+        run: uname -m
+
+      # Make the binary executable
+      - name: Make binary executable
+        run: |
+          if [ "${{ matrix.arch }}" = "x86_64" ]; then
+            chmod +x ./coveralls-linux-x86_64;
+          elif [ "${{ matrix.arch }}" = "aarch64" ]; then
+            chmod +x ./coveralls-linux-aarch64;
+          fi
+
+#      # Run the binary directly
+#      - name: Run the correct binary
+#        run: |
+#          if [ "${{ matrix.arch }}" = "x86_64" ]; then
+#            ./coveralls-linux-x86_64;
+#          elif [ "${{ matrix.arch }}" = "aarch64" ]; then
+#            ./coveralls-linux-aarch64;
+#          fi
+#        env:
+#          COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Run Correct Binary in Emulated Environment
+        run: |
+          if [ "${{ matrix.arch }}" = "x86_64" ]; then
+            ./binaries/coveralls-linux-x86_64 ./coverage/coverage-report.json;
+          elif [ "${{ matrix.arch }}" = "aarch64" ]; then
+            docker run --rm --platform linux/arm64/v8 \
+              -v $(pwd):/app \
+              -w /app \
+              ubuntu:22.04 \
+              /bin/sh -c "./binaries/coveralls-linux-aarch64 ./coverage/coverage-report.json"
+          fi
+        env:
+          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
