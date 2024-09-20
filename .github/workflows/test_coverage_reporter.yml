@@ -51,6 +51,9 @@ jobs:
       - name: List files
         run: ls -l
 
+      - name: Print Host Architecture
+        run: uname -m
+
       # Make the binary executable
       - name: Make binary executable
         run: |
@@ -60,13 +63,27 @@ jobs:
             chmod +x ./coveralls-linux-aarch64;
           fi
 
-      # Run the binary directly
-      - name: Run the correct binary
+#      # Run the binary directly
+#      - name: Run the correct binary
+#        run: |
+#          if [ "${{ matrix.arch }}" = "x86_64" ]; then
+#            ./coveralls-linux-x86_64;
+#          elif [ "${{ matrix.arch }}" = "aarch64" ]; then
+#            ./coveralls-linux-aarch64;
+#          fi
+#        env:
+#          COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Run Correct Binary in Emulated Environment
         run: |
           if [ "${{ matrix.arch }}" = "x86_64" ]; then
-            ./coveralls-linux-x86_64;
+            ./binaries/coveralls-linux-x86_64 ./coverage/coverage-report.json;
           elif [ "${{ matrix.arch }}" = "aarch64" ]; then
-            ./coveralls-linux-aarch64;
+            docker run --rm --platform linux/arm64/v8 \
+              -v $(pwd):/app \
+              -w /app \
+              ubuntu:22.04 \
+              /bin/sh -c "./binaries/coveralls-linux-aarch64 ./coverage/coverage-report.json"
           fi
         env:
-          COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
