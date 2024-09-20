@@ -51,7 +51,16 @@ jobs:
       - name: List files
         run: ls -l
 
-      # Run the binary directly (without unzipping)
+      # Make the binary executable
+      - name: Make binary executable
+        run: |
+          if [ "${{ matrix.arch }}" = "x86_64" ]; then
+            chmod +x ./coveralls-linux-x86_64;
+          elif [ "${{ matrix.arch }}" = "aarch64" ]; then
+            chmod +x ./coveralls-linux-aarch64;
+          fi
+
+      # Run the binary directly
       - name: Run the correct binary
         run: |
           if [ "${{ matrix.arch }}" = "x86_64" ]; then
