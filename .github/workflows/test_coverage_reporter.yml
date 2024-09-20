@@ -25,26 +25,47 @@ jobs:
           ruby-version: 2.7.7
           bundler-cache: true
 
-      # For pre-release testing only
-      - name: Install unzip
-        run: sudo apt-get install unzip -y
+      - name: Install Ruby dependencies
+        run: bundle install
 
       - name: Run Tests
         run: bundle exec rspec
 
       # For pre-release testing only
-      - name: Download, unzip and run x86_64 binary
+      - name: Install GitHub CLI
+        run: sudo apt-get install gh -y
+
+      # For pre-release testing only
+      - name: Install GitHub CLI
+        run: sudo apt-get install gh -y
+
+      # For pre-release testing only
+      - name: Authenticate GitHub CLI
+        run: gh auth login --with-token
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # For pre-release testing only
+      - name: Download x86_64 artifact
         run: |
-          curl -sL https://github.com/coverallsapp/coverage-reporter/actions/runs/10950279748/artifacts/1955825113 -o coveralls-linux-x86_64.zip
+          gh run download 10950279748 --name coveralls-linux-x86_64 --dir ./
+
+      # For pre-release testing only
+      - name: Unzip and run x86_64 binary
+        run: |
           unzip coveralls-linux-x86_64.zip
           ./coveralls-linux-x86_64
         env:
           COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
 
       # For pre-release testing only
-      - name: Download, unzip and run aarch64 binary
+      - name: Download aarch64 artifact
         run: |
-          curl -sL https://github.com/coverallsapp/coverage-reporter/actions/runs/10950279748/artifacts/1955825110 -o coveralls-linux-aarch64.zip
+          gh run download 10950279748 --name coveralls-linux-aarch64 --dir ./
+
+      # For pre-release testing only
+      - name: Unzip and run aarch64 binary
+        run: |
           unzip coveralls-linux-aarch64.zip
           ./coveralls-linux-aarch64
         env:
