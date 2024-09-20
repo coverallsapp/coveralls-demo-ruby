@@ -36,31 +36,30 @@ jobs:
         run: sudo apt-get install gh -y
 
       # For pre-release testing only
-      - name: Install GitHub CLI
-        run: sudo apt-get install gh -y
-
-      # For pre-release testing only
       - name: Download x86_64 artifact
         run: |
           gh run download 10950279748 --name coveralls-linux-x86_64 --dir ./
 
       # For pre-release testing only
-      - name: Unzip and run x86_64 binary
-        run: |
-          unzip coveralls-linux-x86_64.zip
-          ./coveralls-linux-x86_64
+      # Conditionally download and run based on architecture
+      - name: Download the correct binary
         env:
-          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
-
-      # For pre-release testing only
-      - name: Download aarch64 artifact
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh run download 10950279748 --name coveralls-linux-aarch64 --dir ./
+          if [ "${{ matrix.arch }}" = "x86_64" ]; then
+            gh run download 10950279748 --name coveralls-linux-x86_64 --dir ./;
+          elif [ "${{ matrix.arch }}" = "aarch64" ]; then
+            gh run download 10950279748 --name coveralls-linux-aarch64 --dir ./;
+          fi
 
-      # For pre-release testing only
-      - name: Unzip and run aarch64 binary
+      - name: Unzip and run the correct binary
         run: |
-          unzip coveralls-linux-aarch64.zip
-          ./coveralls-linux-aarch64
+          if [ "${{ matrix.arch }}" = "x86_64" ]; then
+            unzip coveralls-linux-x86_64.zip;
+            ./coveralls-linux-x86_64;
+          elif [ "${{ matrix.arch }}" = "aarch64" ]; then
+            unzip coveralls-linux-aarch64.zip;
+            ./coveralls-linux-aarch64;
+          fi
         env:
           COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
