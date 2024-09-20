@@ -40,12 +40,6 @@ jobs:
         run: sudo apt-get install gh -y
 
       # For pre-release testing only
-      - name: Authenticate GitHub CLI
-        run: gh auth login --with-token
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      # For pre-release testing only
       - name: Download x86_64 artifact
         run: |
           gh run download 10950279748 --name coveralls-linux-x86_64 --dir ./
