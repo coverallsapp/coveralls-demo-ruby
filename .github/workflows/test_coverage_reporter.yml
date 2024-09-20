@@ -36,11 +36,6 @@ jobs:
         run: sudo apt-get install gh -y
 
       # For pre-release testing only
-      - name: Download x86_64 artifact
-        run: |
-          gh run download 10950279748 --name coveralls-linux-x86_64 --dir ./
-
-      # For pre-release testing only
       # Conditionally download and run based on architecture
       - name: Download the correct binary
         env:
