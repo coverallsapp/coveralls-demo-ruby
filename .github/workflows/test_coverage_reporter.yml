@@ -42,18 +42,22 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           if [ "${{ matrix.arch }}" = "x86_64" ]; then
-          gh run download 10950279748 --repo coverallsapp/coverage-reporter --name coveralls-linux-x86_64 --dir ./;
+            gh run download 10950279748 --repo coverallsapp/coverage-reporter --name coveralls-linux-x86_64 --dir ./;
           elif [ "${{ matrix.arch }}" = "aarch64" ]; then
-          gh run download 10950279748 --repo coverallsapp/coverage-reporter --name coveralls-linux-aarch64 --dir ./;
+            gh run download 10950279748 --repo coverallsapp/coverage-reporter --name coveralls-linux-aarch64 --dir ./;
           fi
+
+      # Debugging: List files after download
+      - name: List files
+        run: ls -l
 
       - name: Unzip and run the correct binary
         run: |
           if [ "${{ matrix.arch }}" = "x86_64" ]; then
-            unzip coveralls-linux-x86_64.zip;
+            unzip coveralls-linux-x86_64.zip || echo "File not found: coveralls-linux-x86_64.zip";
             ./coveralls-linux-x86_64;
           elif [ "${{ matrix.arch }}" = "aarch64" ]; then
-            unzip coveralls-linux-aarch64.zip;
+            unzip coveralls-linux-aarch64.zip || echo "File not found: coveralls-linux-aarch64.zip";
             ./coveralls-linux-aarch64;
           fi
         env:
