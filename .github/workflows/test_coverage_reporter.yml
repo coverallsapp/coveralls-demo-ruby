@@ -51,13 +51,12 @@ jobs:
       - name: List files
         run: ls -l
 
-      - name: Unzip and run the correct binary
+      # Run the binary directly (without unzipping)
+      - name: Run the correct binary
         run: |
           if [ "${{ matrix.arch }}" = "x86_64" ]; then
-            unzip coveralls-linux-x86_64.zip || echo "File not found: coveralls-linux-x86_64.zip";
             ./coveralls-linux-x86_64;
           elif [ "${{ matrix.arch }}" = "aarch64" ]; then
-            unzip coveralls-linux-aarch64.zip || echo "File not found: coveralls-linux-aarch64.zip";
             ./coveralls-linux-aarch64;
           fi
         env:
