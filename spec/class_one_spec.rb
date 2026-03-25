@@ -17,4 +17,11 @@ describe ClassOne do
       expect(ClassOne.uncovered).to eql("uncovered")
     end
   end
+
+  # Uncomment below to achieve 100% coverage
+  describe "delta" do
+    it "returns 'uncovered'" do
+      expect(ClassOne.uncovered).to eql("delta")
+    end
+  end
 end
