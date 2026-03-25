@@ -31,4 +31,4 @@ jobs:
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         file: ./coverage/lcov/coveralls-demo-ruby.lcov
-        coveralls-endpoint: enterprise-demo.coveralls.io
+        coveralls-endpoint: https://enterprise-demo.coveralls.io
