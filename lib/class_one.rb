@@ -17,4 +17,14 @@ class ClassOne
     "uncovered"
   end
 
+  def self.delta
+    if 1 + 1 == 2
+      puts true
+    else
+      puts false
+    end
+
+    "delta"
+  end
+
 end
