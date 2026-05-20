@@ -48,8 +48,6 @@ jobs:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         file: ./coverage/lcov/coveralls-demo-ruby.lcov
         coveralls-endpoint: https://enterprise-demo.coveralls.io
-<<<<<<< Updated upstream
-=======
         flag-name: subproject-test-02
         parallel: true
 
@@ -61,7 +59,7 @@ jobs:
     - name: Coveralls Finished
       uses: coverallsapp/github-action@v2
       with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        coveralls-endpoint: https://enterprise-demo.coveralls.io
         parallel-finished: true
         carryforward: "subproject-test-01,subproject-test-02"
-        coveralls-endpoint: https://enterprise-demo.coveralls.io
->>>>>>> Stashed changes
