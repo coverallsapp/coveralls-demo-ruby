@@ -48,17 +48,3 @@ jobs:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         file: ./coverage/lcov/coveralls-demo-ruby.lcov
         coveralls-endpoint: https://enterprise-demo.coveralls.io
-        flag-name: subproject-test-02
-        parallel: true
-
-
-  finish:
-    needs: build_and_test
-    if: ${{ always() }}
-    runs-on: ubuntu-latest
-    steps:
-    - name: Coveralls Finished
-      uses: coverallsapp/github-action@v2
-      with:
-        parallel-finished: true
-        carryforward: "subproject-test-01,subproject-test-02"
