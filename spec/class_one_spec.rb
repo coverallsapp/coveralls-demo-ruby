@@ -18,7 +18,7 @@ describe ClassOne do
     end
   end
 
-  # Uncomment below to achieve 100% coverage
+  # Uncomment below to achieve 100% coverage — trival change
   # describe "delta" do
   #   it "returns 'uncovered'" do
   #     expect(ClassOne.delta).to eql("delta")
