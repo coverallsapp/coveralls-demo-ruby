@@ -1,0 +1,3 @@
+pr_comment: compact
+status:
+  coverage_threshold: 80.0
