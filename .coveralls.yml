@@ -1,2 +1,4 @@
 status:
-  patch_status: false
+  patch_status:
+    enabled: false
+    
