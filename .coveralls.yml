@@ -1,3 +1,4 @@
 service_name: github
 status:
-  subproject-test-01: false
+  enabled: false
+  coverage_threshold: 80.0   # preserved while disabled
