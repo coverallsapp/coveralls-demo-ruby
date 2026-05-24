@@ -1,5 +1,3 @@
 service_name: github
 status:
-  patch_status:
-    enabled: false
-    coverage_threshold: 75.0   # preserved while disabled
+  subproject-test-01: false
