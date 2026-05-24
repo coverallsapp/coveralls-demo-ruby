@@ -1,11 +1,4 @@
 status:
-  api: false                       # 10a — scalar false suppresses SourceDirectory "api"
-  services:                        # 10b — Hash enabled:false suppresses SourceDirectory "services"
-    enabled: false
-    coverage_threshold: 50.0       # preserved across toggle
-  concerns:                        # 10c — implicit-enabled + threshold applied
-    coverage_threshold: 50.0
+  lib: false                       # 10a — scalar false suppresses SourceDirectory "api"
 flags:
-  api: app/controllers/api
-  services: app/services
-  concerns: app/concerns
+  lib: lib/
