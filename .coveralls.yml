@@ -1,0 +1,5 @@
+service_name: github
+status:
+  subproject-test-01:
+    enabled: false
+    fail_threshold: 50.0      # preserved while disabled — proves Hash-form UX
