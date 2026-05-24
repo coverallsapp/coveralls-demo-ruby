@@ -1,4 +1,5 @@
-service_name: github
 status:
-  enabled: false
-  coverage_threshold: 80.0   # preserved while disabled
+  enabled: false # BUILD off
+  subproject-test-01: false # subproject 1 off (scalar form for kill switches)
+  subproject-test-02: false # subproject 2 off
+  # No patch_status kill switch — patch_status_enabled Repo Setting must be ON.
