@@ -1,5 +1,11 @@
 status:
-  enabled: false # BUILD off
-  subproject-test-01: false # subproject 1 off (scalar form for kill switches)
-  subproject-test-02: false # subproject 2 off
-  # No patch_status kill switch — patch_status_enabled Repo Setting must be ON.
+  api: false                       # 10a — scalar false suppresses SourceDirectory "api"
+  services:                        # 10b — Hash enabled:false suppresses SourceDirectory "services"
+    enabled: false
+    coverage_threshold: 50.0       # preserved across toggle
+  concerns:                        # 10c — implicit-enabled + threshold applied
+    coverage_threshold: 50.0
+flags:
+  api: app/controllers/api
+  services: app/services
+  concerns: app/concerns
