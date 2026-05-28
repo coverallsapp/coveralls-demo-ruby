@@ -12,9 +12,16 @@ describe ClassOne do
   end
 
   # Uncomment below to achieve 100% coverage
-  # describe "uncovered" do
+  describe "uncovered" do
+    it "returns 'uncovered'" do
+      expect(ClassOne.uncovered).to eql("uncovered")
+    end
+  end
+
+  # Uncomment below to achieve 100% coverage — trival change
+  # describe "delta" do
   #   it "returns 'uncovered'" do
-  #     expect(ClassOne.uncovered).to eql("uncovered")
+  #     expect(ClassOne.delta).to eql("delta")
   #   end
   # end
 end
