@@ -27,14 +27,14 @@ class ClassOne
     "delta"
   end
 
-  # def self.omega
-  #   if 1 + 1 == 2
-  #     puts true
-  #   else
-  #     puts false
-  #   end
+  def self.omega
+    if 1 + 1 == 2
+      puts true
+    else
+      puts false
+    end
 
-  #   "omega"
-  # end
+    "omega"
+  end
 
 end
