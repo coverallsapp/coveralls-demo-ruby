@@ -63,7 +63,3 @@ jobs:
         coveralls-endpoint: https://enterprise-demo.coveralls.io
         parallel-finished: true
         carryforward: "subproject-test-01,subproject-test-02"
-<<<<<<< Updated upstream
-=======
-        coveralls-endpoint: https://enterprise-demo.coveralls.io
->>>>>>> Stashed changes
