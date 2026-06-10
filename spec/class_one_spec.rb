@@ -24,4 +24,11 @@ describe ClassOne do
       expect(ClassOne.delta).to eql("delta")
     end
   end
+
+  # Uncomment below to achieve 100% coverage — trival change
+  # describe "omega" do
+  #   it "returns 'omega'" do
+  #     expect(ClassOne.omega).to eql("omega")
+  #   end
+  # end
 end
