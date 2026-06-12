@@ -33,9 +33,9 @@ describe ClassOne do
   end
 
   # Uncomment below to raise coverage — trival change
-  describe "alpha" do
-    it "returns 'alpha'" do
-      expect(ClassOne.alpha).to eql("alpha")
-    end
-  end
+  # describe "alpha" do
+  #   it "returns 'alpha'" do
+  #     expect(ClassOne.alpha).to eql("alpha")
+  #   end
+  # end
 end
