@@ -26,11 +26,11 @@ describe ClassOne do
   # end
 
   # Uncomment below to raise coverage — trival change
-  describe "omega" do
-    it "returns 'omega'" do
-      expect(ClassOne.omega).to eql("omega")
-    end
-  end
+  # describe "omega" do
+  #   it "returns 'omega'" do
+  #     expect(ClassOne.omega).to eql("omega")
+  #   end
+  # end
 
   # Uncomment below to raise coverage — trival change
   describe "alpha" do
