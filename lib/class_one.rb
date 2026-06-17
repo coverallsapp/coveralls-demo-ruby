@@ -47,4 +47,13 @@ class ClassOne
   #   "alpha"
   # end
 
+  def self.yalta
+    if 1 + 1 == 2
+      puts true
+    else
+      puts false
+    end
+
+    "yalta"
+  end
 end
