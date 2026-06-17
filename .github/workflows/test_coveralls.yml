@@ -42,14 +42,14 @@ jobs:
         flag-name: subproject-test-01
         parallel: true
 
-    - name: Coveralls Parallel Upload 2
-      uses: coverallsapp/github-action@v2
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        file: ./coverage/lcov/coveralls-demo-ruby.lcov
-        coveralls-endpoint: https://enterprise-demo.coveralls.io
-        flag-name: subproject-test-02
-        parallel: true
+    # - name: Coveralls Parallel Upload 2
+    #   uses: coverallsapp/github-action@v2
+    #   with:
+    #     github-token: ${{ secrets.GITHUB_TOKEN }}
+    #     file: ./coverage/lcov/coveralls-demo-ruby.lcov
+    #     coveralls-endpoint: https://enterprise-demo.coveralls.io
+    #     flag-name: subproject-test-02
+    #     parallel: true
 
   finish:
     needs: build_and_test
@@ -62,4 +62,5 @@ jobs:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         coveralls-endpoint: https://enterprise-demo.coveralls.io
         parallel-finished: true
-        carryforward: "subproject-test-01,subproject-test-02"
+        # carryforward: "subproject-test-01,subproject-test-02"
+        carryforward: "subproject-test-02"

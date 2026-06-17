@@ -37,15 +37,15 @@ class ClassOne
     "omega"
   end
 
-  # def self.alpha
-  #   if 1 + 1 == 2
-  #     puts true
-  #   else
-  #     puts false
-  #   end
+  def self.alpha
+    if 1 + 1 == 2
+      puts true
+    else
+      puts false
+    end
 
-  #   "alpha"
-  # end
+    "alpha"
+  end
 
   def self.yalta
     if 1 + 1 == 2
@@ -54,6 +54,6 @@ class ClassOne
       puts false
     end
 
-    "yalta"
+    puts "yalta"
   end
 end
